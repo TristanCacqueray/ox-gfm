@@ -274,7 +274,7 @@ contextual information."
 ;;;; Table of contents
 
 (defun org-gfm-anchor-from-title (title)
-  (replace-regexp-in-string "[^a-z\-_]" "" (downcase (replace-regexp-in-string "[ ]" "-" title))))
+  (replace-regexp-in-string "[^a-z0-9\-_]" "" (downcase (replace-regexp-in-string "[ ]" "-" title))))
 
 (defun org-gfm-anchor-from-headline (headline)
   (org-gfm-anchor-from-title (org-export-data (org-export-get-alt-title headline info) info)))
@@ -347,7 +347,7 @@ holding export options."
          (toc-string (or (mapconcat 'org-gfm-format-toc anchors-to-headlines "\n") ""))
          (toc-tail (if headlines "\n\n" "")))
     (org-trim (concat toc-string toc-tail contents "\n" (org-gfm-footnote-section info)))))
-        
+
 
 
 
